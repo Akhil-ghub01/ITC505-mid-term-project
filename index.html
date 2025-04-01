@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="game">
+        <div id="story-text"></div>
+        <div id="choices"></div>
+        <div id="image-container">
+            <img id="story-image" src="" alt="" />
+        </div>
+        <button id="restart-button" style="display:none;" onclick="restartGame()">Restart Game</button>
+    </div>
+
+    <!-- Addendum Section - Hidden Initially -->
+    <section id="addendum" hidden>
+        <h2>Project Addendum</h2>
+        <p><strong>Process:</strong> The planning process included designing a simple story with branching choices and outcomes. I chose a forest adventure theme, which allowed for interesting choices and endings. Initially, I started by outlining the story's structure and key points, ensuring there would be at least 8 distinct endings. I also planned the sequence of choices to make sure the game had a logical flow.</p>
+
+        <p><strong>Challenges:</strong> One challenge was ensuring that all choices correctly linked to the next stage and that the images displayed properly. This was overcome by carefully checking the structure of the JavaScript objects and ensuring that each choice's <code>next</code> property matched a valid stage. Also, ensuring the images loaded correctly for each choice was another challenge, but testing and debugging allowed me to handle this well.</p>
+
+        <p><strong>Insights:</strong> Using objects in JavaScript to manage the stages of the game was an efficient approach. I also learned how to dynamically generate content and handle user inputs using event listeners. This project helped reinforce my understanding of DOM manipulation and the event-driven nature of JavaScript.</p>
+    </section>
+
+    <footer>
+        <p>Last updated: <span id="lastModified"></span></p>
+    </footer>
+
+    <script type="text/javascript">
+        // Set the last modified date in the footer
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+
+        // Function to show addendum when needed (e.g., when game ends or after restart)
+        function showAddendum() {
+            document.getElementById('addendum').removeAttribute('hidden');
+        }
+
+        // Function to restart the game and hide addendum
+        function restartGame() {
+            document.getElementById('addendum').setAttribute('hidden', 'true');
+            startGame();
+        }
+
+        // Function to start the game (Make sure to implement game logic)
+        function startGame() {
+            currentStage = "start";
+            showStage(currentStage);
+            document.getElementById('restart-button').style.display = "none"; // Hide restart button at the beginning
+        }
+
+        // Add event listener for the restart button
+        document.getElementById('restart-button').addEventListener('click', function() {
+            startGame();
+        });
+
+        // Start the game
+        startGame();
+    </script>
+
+    <script src="game.js"></script>
+
+</body>
+</html>
